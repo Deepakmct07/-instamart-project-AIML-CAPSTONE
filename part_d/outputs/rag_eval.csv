@@ -1,0 +1,15 @@
+question,expected_doc,top_doc,top_score,pass
+What delivery time makes a completed order eligible for a full refund?,refund_policy.txt,refund_policy.txt,0.382,True
+Who must approve a refund above INR 1000?,refund_policy.txt,refund_policy.txt,0.514,True
+How many days do I have to raise a refund request?,refund_policy.txt,refund_policy.txt,0.337,True
+What is the delivery fee on small orders?,delivery_policy.txt,delivery_policy.txt,0.318,True
+On orders of what value is delivery free?,delivery_policy.txt,delivery_policy.txt,0.264,True
+Why does the electronics delivery need a one time password?,delivery_policy.txt,delivery_policy.txt,0.363,True
+Is cash on delivery available for a large order?,payment_policy.txt,payment_policy.txt,0.461,True
+How soon is money returned when a payment fails but is deducted?,payment_policy.txt,payment_policy.txt,0.424,True
+Can wallet balance be refunded as cash?,payment_policy.txt,payment_policy.txt,0.678,True
+When are delivery addresses deleted from active systems?,privacy_policy.txt,privacy_policy.txt,0.539,True
+How fast must a fraud ticket reach the security team?,escalation_policy.txt,escalation_policy.txt,0.432,True
+After how many steps must an automated assistant hand over to a human?,escalation_policy.txt,escalation_policy.txt,0.418,True
+What is the favourite colour of the company mascot?,NONE,refund_policy.txt,0.0,True
+Who won the cricket world cup final?,NONE,refund_policy.txt,0.0,True
