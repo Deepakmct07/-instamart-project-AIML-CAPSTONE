@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-const API = import.meta.env.VITE_API_URL || "http://localhost:8000";
+const API = import.meta.env.VITE_API_URL || "https://instamart-capstone-project-aiml.onrender.com";
 const COLORS = { REFUND: "#1a9a4a", ESCALATE: "#d68910", DENIED: "#c0392b", NOT_FOUND: "#7f8c8d", FALLBACK: "#8e44ad", NEEDS_INFO: "#2980b9" };
 const EXAMPLES = ["What is the delivery fee on small orders?", "Who must approve a refund above INR 1000?", "Someone hacked my account", "I want a refund for order ORD-100001"];
 export default function App() {
