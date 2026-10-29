@@ -29,6 +29,15 @@ def chat(req: Chat):
     g = validate_and_sanitize(req.message)
     if g.status == "blocked":
         return {"blocked": True, "reason": g.reason, "answer": "Please enter a valid message (not empty, and shorter)."}
+    if re.fullmatch(
+        r"(hi|hello|hey|good morning|good afternoon|good evening)[.!? ]*",
+        g.cleaned_text.strip(),
+        re.IGNORECASE
+    ):
+        return {
+            "intent": "greeting",
+            "answer": "Hi! I'm the Instamart Support Co-pilot. I can answer policy questions and help check refund requests. What can I help you with?"
+        }
     if POLICY_QUESTION.search(g.cleaned_text):
         r = rag.answer(g.cleaned_text)
         return {"intent": "policy_qa", **r}
