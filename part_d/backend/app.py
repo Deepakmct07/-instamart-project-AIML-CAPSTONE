@@ -29,7 +29,7 @@ def chat(req: Chat):
     g = validate_and_sanitize(req.message)
     if g.status == "blocked":
         return {"blocked": True, "reason": g.reason, "answer": "Please enter a valid message (not empty, and shorter)."}
-        if POLICY_QUESTION.search(g.cleaned_text):
+    if POLICY_QUESTION.search(g.cleaned_text):
         r = rag.answer(g.cleaned_text)
         return {"intent": "policy_qa", **r}
     cid = req.customer_id.strip().upper() if req.customer_id else None
