@@ -11,6 +11,11 @@ app = FastAPI(title="Instamart Support Co-pilot")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 REFUND = re.compile(r"\b(refund|money back|reimburse)\b", re.I)
 FRAUD = re.compile(r"fraud|unauthori[sz]ed|hacked|never made", re.I)
+POLICY_QUESTION = re.compile(
+    r"\b(who|what|when|where|why|how|which)\b.*"
+    r"\b(refunds?|money back|approval|approve|policy|limit|threshold|eligible)\b",
+    re.I
+)
 class Chat(BaseModel): message: str; customer_id: str | None = None
 @app.get("/health")
 def health(): return {"ok": True, "chunks": len(rag.CHUNKS)}
@@ -24,6 +29,9 @@ def chat(req: Chat):
     g = validate_and_sanitize(req.message)
     if g.status == "blocked":
         return {"blocked": True, "reason": g.reason, "answer": "Please enter a valid message (not empty, and shorter)."}
+        if POLICY_QUESTION.search(g.cleaned_text):
+        r = rag.answer(g.cleaned_text)
+        return {"intent": "policy_qa", **r}
     cid = req.customer_id.strip().upper() if req.customer_id else None
     if REFUND.search(g.cleaned_text) or "[LOOP]" in g.cleaned_text:
         r = agent.run_agent(g.cleaned_text, cid, g.order_ids)
